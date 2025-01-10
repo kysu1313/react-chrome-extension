@@ -1,6 +1,7 @@
 console.log("Content script loaded");
 
-
+const statFilterSelector =
+  "#trade > div.top > div > div.search-bar.search-advanced > div > div.search-advanced-pane.brown > div.filter-group.expanded > div.filter-group-body > div > span > div > div.multiselect__tags > input";
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 

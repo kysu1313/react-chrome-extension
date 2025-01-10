@@ -1,0 +1,302 @@
+to maximum Life
+to maximum Mana
+#% to Lightning Resistance
+#% to Fire Resistance
+#% to Cold Resistance
+to Intelligence
+to Dexterity
+#% increased Rarity of Items found
+Life Regeneration per second
+to Accuracy Rating
+to Strength
+#% increased Mana Regeneration Rate
+to maximum Energy Shield
+#% increased Spell Damage
+Gain # Life per Enemy Killed
+to Stun Threshold
+Gain # Mana per Enemy Killed
+#% increased Energy Shield
+#% increased Physical Damage
+Adds # to # Physical Damage to Attacks
+#% increased Attribute Requirements
+to Accuracy Rating
+#% increased Cast Speed
+to Evasion Rating
+to Armour
+#% to Chaos Resistance
+#% increased Movement Speed
+#% increased Evasion Rating
+#% increased Light Radius
+#% to all Elemental Resistances
+to Spirit
+Adds # to # Physical Damage
+#% increased Armour
+Adds # to # Lightning Damage
+to # Physical Thorns damage
+Adds # to # Lightning damage to Attacks
+#% increased Armour and Evasion
+Adds # to # Cold damage to Attacks
+#% increased Armour and Energy Shield
+#% increased Evasion and Energy Shield
+Adds # to # Fire Damage
+to Evasion Rating
+Adds # to # Fire damage to Attacks
+#% increased Lightning Damage
+Adds # to # Cold Damage
+to maximum Energy Shield
+#% increased Critical Hit Chance
+#% increased Cold Damage
+#% increased Attack Speed
+#% increased Fire Damage
+to all Attributes
+#% increased maximum Energy Shield
+#% increased Evasion Rating
+#% increased Armour
+#% increased Chaos Damage
+#% increased Critical Damage Bonus
+# to Level of all Melee Skills
+# to Level of all Projectile Skills
+#% increased Critical Hit Chance for Spells
+#% to Critical Hit Chance
+#% increased Rarity of Items found in this Area
+#% increased Attack Speed
+#% to Critical Damage Bonus
+#% increased chance to Ignite
+#% increased Elemental Damage with Attacks
+# to Level of all Minion Skills
+# to Armour
+#% increased Magic Monsters
+#% increased number of Rare Monsters
+#% increased Critical Spell Damage Bonus
+Leeches #% of Physical Damage as Life
+Leeches #% of Physical Damage as Mana
+Leech #% of Physical Attack Damage as Mana
+Leech #% of Physical Attack Damage as Life
+Grants # Life per Enemy Hit
+#% increased Projectile Speed
+# to Level of all Spell Skills
+Causes #% increased Stun Buildup
+#% increased Spirit
+#% increased Gold found in this Area
+#% increased Critical Hit Chance for Attacks
+#% increased Stun Duration
+#% increased Block chance
+Gain #% of Damage as Extra Fire Damage
+#% increased Charm Effect Duration
+Gain #% of Damage as Extra Cold Damage
+#% increased Pack size
+Minions have #% increased maximum Life
+#% increased Elemental Damage
+#% increased Flask Mana Recovery rate
+#% of Damage taken Recouped as Life
+#% increased Flask Life Recovery rate
+#% increased Critical Damage Bonus for Attack Damage
+#% increased Freeze Buildup
+#% increased Flask Charges gained
+#% reduced Ignite Duration on you
+#% increased Energy Shield Recharge Rate
+#% increased Damage with Bow Skills
+#% increased Quantity of Items found in this Area
+#% increased Projectile Damage
+# to Level of all Fire Spell Skills
+#% faster start of Energy Shield Recharge
+#% increased Poison Duration on you
+# to Level of all Lightning Spell Skills
+#% increased Bleeding Duration on you
+#% increased Magic Pack Size
+#% increased chance to Shock
+#% increased Charm Charges gained
+#% reduced Flask Charges used
+#% increased number of Monster Packs
+Minions deal #% increased Damage
+#% increased Stun Threshold
+#% increased Charges gained
+#% of Damage taken Recouped as Mana
+#% increased Attack Damage
+#% increased Experience gain
+#% increased Charges
+Damage Penetrates #% Cold Resistance
+#% increased Accuracy Rating
+#% increased Stun Buildup
+#% reduced Freeze Duration on you
+#% reduced Chill Duration on you
+#% increased Melee Damage
+#% chance to inflict Bleeding on Hit
+#% reduced Shock duration on you
+Allies in your Presence deal #% increased Damage
+#% increased Amount Recovered
+Allies in your Presence have # to Accuracy Rating
+Allies in your Presence Regenerate # Life per second
+#% increased Global Physical Damage
+Gain #% of Damage as Extra Lightning Damage
+#% increased Charges per use
+#% increased Area of Effect
+#% increased Life Regeneration rate
+Gain # Life per Enemy Hit with Attacks
+#% reduced Charm Charges used
+Damage Penetrates #% Lightning Resistance
+Gain # Rage on Melee Hit
+# to Level of all Cold Spell Skills
+#% increased maximum Life
+#% increased Spell Physical Damage
+Gains # Charges per Second
+Gain # Rage when Hit by an Enemy
+#% chance to Pierce an Enemy
+#% increased Warcry Speed
+#% increased amount of Life Leeched
+#% increased Damage with Crossbows
+Recover #% of Life on Kill
+#% increased Magnitude of Ignite you inflict
+#% increased Damage with Bows
+Monsters have #% increased Ailment Threshold
+#% increased Magnitude of Poison you inflict
+#% increased maximum Mana
+Minions have #% to all Elemental Resistances
+#% increased Damage with Quarterstaves
+Monsters deal #% of Damage as Extra Lightning
+Players are Cursed with Elemental Weakness
+Monsters deal #% of Damage as Extra Fire
++#% Monster Elemental Resistances
+#% increased Monster Cast Speed
+#% more Monster Life
+#% to Monster Critical Damage Bonus
+Minions have #% increased Attack and Cast Speed
+Monsters have #% increased Critical Hit Chance
+#% increased Attack Speed with Bows
+# to Level of all Chaos Spell Skills
+Monsters have #% increased Stun Threshold
+Players are Cursed with Enfeeble
+#% increased amount of Rare Chests
+#% increased Duration of Damaging Ailments on Enemies
+Monsters deal #% of Damage as Extra Cold
+#% increased Monster Attack Speed
+#% Chance to gain a Charge when you Kill an Enemy
+#% increased Life Recovery from Flasks
+Players are Cursed with Temporal Chains
+#% increased amount of Magic Chests
+#% increased Skill Effect Duration
+#% increased Defences from Equipped Shield
+# Charm Slot
+#% increased Totem Damage
+#% increased Block chance
+Gain #% of maximum Energy Shield as additional Stun Threshold
+#% increased Damage with Maces
+#% chance to Poison on Hit
+#% increased Totem Placement speed
+#% increased Elemental Ailment Threshold
+#% increased Warcry Cooldown Recovery Rate
+Allies in your Presence deal # to # additional Attack Lightning Damage
+#% increased Stun Buildup with Maces
+Players have #% less Recovery Rate of Life and Energy Shield
+#% increased Totem Life
+#% increased Duration
+#% increased Shock Duration
+Allies in your Presence deal # to # additional Attack Cold Damage
+#% increased amount of Mana Leeched
+Allies in your Presence deal # to # additional Attack Fire Damage
+#% increased Attack Speed with Crossbows
+Monsters have #% increased Shock Chance
+Minions have #% additional Physical Damage Reduction
+#% increased Monster Movement Speed
+#% increased Weapon Swap Speed
+# to Level of all Physical Spell Skills
+Monsters have #% increased Stun Buildup
+#% increased Monster Damage
+Monsters have #% increased Freeze Buildup
+Monsters gain #% of Maximum Life as Extra Maximum Energy Shield
+#% increased Recovery rate
+Allies in your Presence have #% increased Attack Speed
+Monsters take #% reduced Extra Damage from Critical Hits
+Monsters have #% chance to Poison on Hit
+Recover # Life when Used
+Area has patches of Shocked Ground
+Monsters are Evasive
+Allies in your Presence deal # to # additional Attack Physical Damage
+#% increased Attack Speed with Quarterstaves
+#% increased Magnitude of Bleeding you inflict
+#% increased Energy Shield from Equipped Focus
+Allies in your Presence have #% increased Cast Speed
+Recover # Mana when Used
+Allies in your Presence have #% increased Critical Damage Bonus
+Monsters have #% increased Ignite Chance
+Area has patches of Chilled Ground
+#% increased Knockback Distance
+Allies in your Presence have #% increased Critical Hit Chance
+Monsters are Armoured
+Triggered Spells deal #% increased Spell Damage
+#% increased Damage with Hits against Rare and Unique Enemies
+#% increased Magnitude of Damaging Ailments you inflict with Critical Hits
+#% increased Mana Recovery from Flasks
+Monster Damage Penetrates #% Elemental Resistances
+Allies in your Presence have #% to all Elemental Resistances
+#% increased Area of Effect of Curses
+Players gain #% reduced Flask Charges
+#% increased Flask Effect Duration
+#% increased Magnitude of Ailments you inflict
+#% increased Minion Accuracy Rating
+Herald Skills deal #% increased Damage
+#% to Maximum Lightning Resistance
+#% increased Dexterity
+Damage Penetrates #% Fire Resistance
+#% maximum Player Resistances
+Minions have #% increased Critical Damage Bonus
+#% increased Intelligence
+#% increased Damage while you have an active Charm
+Monsters have #% chance to Bleed on Hit
+#% increased Strength
+#% increased Skill Speed
+Area has patches of Burning Ground
+#% increased Magnitude of Shock you inflict
+#% to Maximum Fire Resistance
+#% increased Curse Duration
+#% increased bonuses gained from Equipped Quiver
+#% increased Accuracy Rating with Bows
+Minions have #% increased Critical Hit Chance
+#% increased Freeze Threshold
+Attacks Gain #% of Damage as Extra Fire Damage
+#% increased amount of Chests
+Offerings have #% increased Maximum Life
+Meta Skills gain #% increased Energy
+Projectiles Pierce all Ignited enemies
+#% increased Damage with Warcries
+Monsters deal #% of Damage as Extra Chaos
+Empowered Attacks deal #% increased Damage
+#% of Recovery applied Instantly
+Break #% increased Armour
+#% increased chance to inflict Ailments
+Mark Skills have #% increased Cast Speed
+Players have #% more Cooldown Recovery Rate
+#% increased Duration of Ignite, Shock and Chill on Enemies
+#% increased Damage against Enemies with Fully Broken Armour
+Monsters fire # additional Projectiles
+Monsters Break Armour equal to #% of Physical Damage dealt
+Leeches #% of maximum Life when you Cast a Spell
+Debuffs on you expire #% faster
+#% less effect of Curses on Monsters
+Trigger Ember Fusillade Skill on casting a Spell
+Monsters have #% increased Area of Effect
+#% increased Crossbow Reload Speed
+Mark Skills have #% increased Skill Effect Duration
+#% increased Freeze Buildup with Quarterstaves
+#% increased Thorns damage
+#% increased Pin Buildup
+#% chance to Blind Enemies on Hit with Attacks
+#% increased Daze Buildup
+#% additional Physical Damage Reduction
+Monsters have #% chance to steal Power, Frenzy and Endurance charges on Hit
+Monsters have #% increased Accuracy Rating
+Rare Monsters have a #% chance to have an additional Modifier
+Recover #% of Mana on Kill
+Enemies Chilled by your Hits can be Shattered as though Frozen
+#% increased Weapon Damage per 5 Strength
+#% increased Poison Duration
+Gain #% of Damage as Chaos Damage per Undead Minion
+#% increased Bleeding Duration
+#% increased Area of Effect for Attacks per 5 Intelligence
+#% increased Attack and Cast Speed
+Lightning damage from Hits Contributes to Electrocution Buildup
+#% increased Attack Speed per 5 Dexterity
+#% to Maximum Cold Resistance
+#% increased Stun Threshold if you haven't been Stunned Recently
+#% chance to not destroy Corpses when Consuming Corpses
+Trigger Spark Skill on killing

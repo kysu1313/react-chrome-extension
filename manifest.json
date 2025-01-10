@@ -20,5 +20,11 @@
         "matches": ["https://www.pathofexile.com/*"],
         "js": ["js/content.js"]
       }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": ["js/data/mods.txt"],
+        "matches": ["https://www.pathofexile.com/*"]
+      }
     ]
   }

@@ -7,10 +7,16 @@ export interface UserItem {
   evasionRating?: string;
   energyShield?: string;
   armour?: string;
-  physicalDamage?: string;
-  lightningDamage?: string;
-  criticalHitChance?: string;
+  damagePerSecond?: string;
   attacksPerSecond?: string;
+  critChance?: string;
+  elementalDamage?: string;
+  lightningDamage?: string;
+  coldDamage?: string;
+  fireDamage?: string;
+  chaosDamage?: string;
+  physicalDamage?: string;
+  criticalHitChance?: string;
   requirements?: {
     level: string;
     str?: string;
@@ -22,7 +28,7 @@ export interface UserItem {
   enchant?: string[];
   implicitMods?: string[];
   explicitMods?: string[];
-  flavorText?: string[];
+  // flavorText?: string[];
   corrupted?: boolean;
   waystoneTier?: string;
   waystoneDropChance?: string;

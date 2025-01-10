@@ -9,7 +9,6 @@ const sendMessageToContentScript = (item: UserItem) => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const tabId = tabs[0]?.id;
       if (tabId !== undefined) {
-        debugger;
         chrome.tabs.sendMessage(tabId, { action: "populateSearchBoxes", item }, (response) => {
           if (chrome.runtime.lastError) {
             console.error("Error sending message to content script:", chrome.runtime.lastError.message);
@@ -34,12 +33,12 @@ const UploadWindow = () => {
       const textareaValue = textarea.value;
       setText(textareaValue);
 
-      const item = parseItemText(textareaValue);
-      console.log("Parsed item:", item);
-      if (item.itemClass) {
-        sendMessageToContentScript(item);
-
-      }
+      parseItemText(textareaValue).then((item) => {
+        console.log("Parsed item:", item);
+        if (item.itemClass) {
+          sendMessageToContentScript(item);
+        }
+      });
     }
   };
 
