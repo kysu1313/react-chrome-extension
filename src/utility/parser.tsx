@@ -1,4 +1,4 @@
-import { UserItem } from "../models/UserItem";
+import { UserItem, Mod } from "../models/UserItem";
 
 function parseSockets(sockets: string | undefined): number {
   if (!sockets) {
@@ -81,9 +81,9 @@ function parseItemClass(itemClass: string): string {
   return "";
 }
 
-function calculateAverageValue(value: string | undefined): string {
+function getModValue(value: string | undefined): string {
   if (!value) return "";
-  const regex = /(\d+)\s*to\s*(\d+)\s*(.*)/;
+  let regex = /(\d+)\s*to\s*(\d+)\s*(.*)/;
   const match = value.match(regex);
   if (match) {
     const num1 = parseInt(match[1], 10);
@@ -92,6 +92,14 @@ function calculateAverageValue(value: string | undefined): string {
     const restOfString = match[3].trim();
     return `${average} ${restOfString}`;
   }
+
+  regex = /\d+/g;
+  const numbers = value.match(regex);
+  if (numbers) {
+    const sum = numbers.reduce((acc, curr) => acc + parseInt(curr, 10), 0);
+    return `${sum}`;
+  }
+
   return value;
 }
 
@@ -107,12 +115,18 @@ function extractModtext(value: string): string {
   const regex = /(?:\d+\s*to\s*\d+|\d+)\s*(.*)/;
   const match = value.match(regex);
   if (match) {
-    return match[1].trim();
+    return cleanValue(match[1].trim());
   }
   return "";
 }
 
+let cachedMods: string[] | null = null;
+
 const fetchModsFile = async (): Promise<string[]> => {
+  if (cachedMods) {
+    return cachedMods;
+  }
+
   const fileUrl = chrome.runtime.getURL("data/mods.txt");
   const response = await fetch(fileUrl);
 
@@ -121,49 +135,76 @@ const fetchModsFile = async (): Promise<string[]> => {
   }
 
   const text = await response.text();
-  return text
-    .split("\n")
-    .map((line) => line.trim())
-    .filter((line) => line && !line.startsWith("#"));
+  cachedMods = text.split("\n").map((line) => line.trim());
+
+  return cachedMods;
 };
 
-const extractExplicitMods = async (lines: string[]): Promise<string[]> => {
+const extractExplicitMods = async (lines: string[]): Promise<Mod[]> => {
   const possibleMods = await fetchModsFile();
+
+  console.log("Possible mods:", possibleMods);
+
   let lineIndex = lines.findIndex((x) => x.includes("(implicit)"));
   console.log("First line index:", lineIndex);
 
   if (lineIndex === -1) {
-    lineIndex = lines.findIndex((x) => x.includes("Item Level"));
+    lineIndex = lines.findIndex((x) => x.includes("(enchant)"));
+    if (lineIndex === -1) {
+      lineIndex = lines.findIndex((x) => x.includes("(rune)"));
+      if (lineIndex === -1) {
+        lineIndex = lines.findIndex((x) => x.includes("Item Level"));
+      }
+    }
   }
 
   let afterFirstDivider = lines.slice(lineIndex + 1);
-
-  console.log("First divider index + 1:", lineIndex + 1);
-  console.log("After first divider:", afterFirstDivider);
-
-  // remove first line of "--------"
   afterFirstDivider = afterFirstDivider.slice(1);
-  
-  console.log("After first divider1:", afterFirstDivider);
 
-  // remove any lines after the next "--------"
-  afterFirstDivider = afterFirstDivider.slice(0,
-    afterFirstDivider.findIndex(x => x.includes("-------"))
+  if (afterFirstDivider[0].includes("-------")) {
+    afterFirstDivider = afterFirstDivider.slice(1);
+  }
+
+  afterFirstDivider = afterFirstDivider.slice(
+    0,
+    afterFirstDivider.findIndex((x) => x.includes("-------"))
   );
 
-  console.log("After first divider2:", afterFirstDivider);
-
-  // remove any remaining lines of "--------"
   const explicitMods = afterFirstDivider.filter(
     (line) => line.trim() !== "--------"
   );
 
-  console.log("Explicit mods:", explicitMods);
   return explicitMods
     .map((line) => line.trim())
     .filter((line) =>
       possibleMods.some((mod) => line.includes(extractModtext(mod)))
-    );
+    )
+    .map((line) => {
+      const modText = possibleMods.find((mod) => {
+        const extractedModText = extractModtext(line);
+        return mod.includes(extractedModText);
+      });
+
+      const value = getModValue(line.trim());
+      return { value, name: modText } as Mod;
+    });
+};
+
+const extractImplicitMods = async (lines: string[]): Promise<Mod[]> => {
+  const possibleMods = await fetchModsFile();
+  let lineIndex = lines.findIndex((x) => x.includes("(implicit)"));
+
+  if (lineIndex === -1) {
+    return [];
+  }
+
+  var implicitMod = lines[lineIndex];
+
+  const modText = possibleMods.find((mod) =>
+    implicitMod.includes(extractModtext(mod))
+  );
+  const value = getModValue(implicitMod.trim());
+  return [{ value, name: modText }] as Mod[];
 };
 
 // Function to parse the uploaded text
@@ -177,6 +218,9 @@ export const parseItemText = async (text: string): Promise<UserItem> => {
 
   console.log("Cleaned text:", cleanedText);
   const lines = cleanedText.split("\n");
+  const explicitMods = await extractExplicitMods(lines);
+  const implicitMods = await extractImplicitMods(lines);
+
   const item: UserItem = {
     itemClass: parseItemClass(
       cleanValue(
@@ -191,26 +235,28 @@ export const parseItemText = async (text: string): Promise<UserItem> => {
     quality: cleanValue(
       lines.find((line) => line.startsWith("Quality:"))?.split(": ")[1]
     ),
-    evasionRating: lines
-      .find((line) => line.startsWith("Evasion Rating:"))
-      ?.split(": ")[1],
-    energyShield: lines
-      .find((line) => line.startsWith("Energy Shield:"))
-      ?.split(": ")[1],
-    armour: lines.find((line) => line.startsWith("Armour:"))?.split(": ")[1],
-    physicalDamage: calculateAverageValue(
+    evasionRating: cleanValue(
+      lines.find((line) => line.startsWith("Evasion Rating:"))?.split(": ")[1]
+    ),
+    energyShield: cleanValue(
+      lines.find((line) => line.startsWith("Energy Shield:"))?.split(": ")[1]
+    ),
+    armour: cleanValue(
+      lines.find((line) => line.startsWith("Armour:"))?.split(": ")[1]
+    ),
+    physicalDamage: getModValue(
       lines.find((line) => line.startsWith("Physical Damage:"))?.split(": ")[1]
     ),
-    lightningDamage: calculateAverageValue(
+    lightningDamage: getModValue(
       lines.find((line) => line.startsWith("Lightning Damage:"))?.split(": ")[1]
     ),
-    coldDamage: calculateAverageValue(
+    coldDamage: getModValue(
       lines.find((line) => line.startsWith("Cold Damage:"))?.split(": ")[1]
     ),
-    fireDamage: calculateAverageValue(
+    fireDamage: getModValue(
       lines.find((line) => line.startsWith("Fire Damage:"))?.split(": ")[1]
     ),
-    chaosDamage: calculateAverageValue(
+    chaosDamage: getModValue(
       lines.find((line) => line.startsWith("Chaos Damage:"))?.split(": ")[1]
     ),
     criticalHitChance: lines
@@ -247,12 +293,8 @@ export const parseItemText = async (text: string): Promise<UserItem> => {
     enchant: lines
       .filter((line) => line.includes("(enchant)"))
       .map((line) => line.split(" (enchant)")[0]),
-    implicitMods: lines
-      .filter((line) => line.includes("(implicit)"))
-      .map((line) =>
-        calculateAverageValue(cleanValue(line.split(" (implicit)")[0]))
-      ),
-    explicitMods: await extractExplicitMods(lines),
+    implicitMods: implicitMods,
+    explicitMods: explicitMods,
     corrupted: lines.includes("Corrupted"),
   };
 

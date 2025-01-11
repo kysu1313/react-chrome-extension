@@ -2,6 +2,8 @@ console.log("Content script loaded");
 
 const statFilterSelector =
   "#trade > div.top > div > div.search-bar.search-advanced > div > div.search-advanced-pane.brown > div.filter-group.expanded > div.filter-group-body > div > span > div > div.multiselect__tags > input";
+const additionalStatSelector = 
+  "#trade > div.top > div > div.search-bar.search-advanced > div > div.search-advanced-pane.brown > div.filter-group.expanded > div.filter-group-body > div.filter.filter-padded > span > div > div.multiselect__tags > input"
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
@@ -28,7 +30,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       waystoneDropChance: '#trade > div.top > div > div.search-bar.search-advanced > div > div.search-advanced-pane.blue > div:nth-child(4) > div.filter-group-body > div.filter.filter-property.spaced > span > input:nth-child(3)',
       // enchant: '',
       // implicitMods: '',
-      // explicitMods: '',
+      explicitMods: '',
       // flavorText: '',
       corrupted: '#trade > div.top > div > div.search-bar.search-advanced > div > div.search-advanced-pane.blue > div:nth-child(5) > div.filter-group-body > div:nth-child(6) > span > div.multiselect.filter-select > div.multiselect__content-wrapper > ul > li:nth-child(1) > span',
     };
@@ -49,8 +51,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
               if (option.textContent.trim() === value) {
                 option.click();
                 optionFound = true;
+              } else if (option.textContent.trim() === 'Yes' && value === true) {
+                option.click();
+                optionFound = true;
+              } else if (option.textContent.trim() === 'No' && value === false) {
+                option.click();
+                optionFound = true;
               }
             });
+
             if (!optionFound) {
               console.error(`Dropdown option not found for value: ${value}`);
             }
@@ -58,7 +67,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             console.error(`Parent element not found for selector: ${selector}`);
           }
         } else {
-          console.log(`Populating ${selector} with value:`, value);
+          console.log(`Populating value:`, value);
           input.value = value;
           input.dispatchEvent(new Event('input', { bubbles: true }));
           input.dispatchEvent(new Event('change', { bubbles: true }));
@@ -68,9 +77,54 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       }
     };
 
+    const populateModField = (value) => {
+      const mods = value;
+      console.log("Populating explicit mods:", mods);
+      if (mods) {
+        let count = 0;
+        mods.forEach(mod => {
+          let filter = statFilterSelector;
+          if (count > 0) {
+            filter = additionalStatSelector;
+          }
+          const input = document.querySelector(filter);
+          if (input) {
+            console.log("Populating explicit mod:", mod.name);
+            const parentElement = input.closest('.multiselect.filter-select');
+            if (parentElement) {
+              const dropdownOptions = parentElement.querySelectorAll('.multiselect__option');
+              let optionFound = false;
+              let test = [];
+              dropdownOptions.forEach(option => {
+                test.push(option.textContent);
+                if (option.textContent.replace("explicit").replace("implicit").toLowerCase().trim() == mod.name.toLowerCase().trim()) {
+                  option.click();
+                  optionFound = true;
+                }
+              });
+
+              console.log("Dropdown options:", test);
+
+              if (!optionFound) {
+                console.error(`Dropdown option not found for mod: ${mod.name}, value: ${mod.value}`);
+              }
+            } else {
+              console.error(`Parent element not found for selector: ${selector}`);
+            }
+          } else {
+            console.error(`Input not found for selector: ${selector}`);
+          }
+        });
+      }
+
+    }
+
     for (const [key, selector] of Object.entries(selectors)) {
       const value = key.split('.').reduce((o, i) => o[i], item);
-      if (value) {
+
+      if (key === 'explicitMods') {
+        populateModField(value);
+      } else if (value) {
         populateField(selector, value);
       }
     }

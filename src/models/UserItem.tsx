@@ -26,10 +26,15 @@ export interface UserItem {
   sockets?: number;
   itemLevel: string;
   enchant?: string[];
-  implicitMods?: string[];
-  explicitMods?: string[];
+  implicitMods?: Mod[];
+  explicitMods?: Mod[];
   // flavorText?: string[];
   corrupted?: boolean;
   waystoneTier?: string;
   waystoneDropChance?: string;
+}
+
+export interface Mod {
+  value: string;
+  name: string;
 }
